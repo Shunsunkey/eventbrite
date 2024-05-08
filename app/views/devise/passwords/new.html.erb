@@ -1,0 +1,83 @@
+<style>
+h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.field {
+    margin-bottom: 25px;
+}
+
+label {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+input[type="email"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+input[type="submit"] {
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.text-muted {
+    font-size: 12px;
+    color: #999;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+.mb-4 {
+    margin-bottom: 40px;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+</style>
+<div class="container text-center"
+<h2>Forgot your password?</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

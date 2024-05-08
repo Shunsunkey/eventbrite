@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventbrite</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+  </head>
+
+    <header class="noto-sans-header">
+    <%= render partial: 'shared/navbar' %>
+    <img src="https://www.zarla.com/images/zarla-top-events-1x1-2400x2400-20211123-dkkcxd64j3w7xj6p3g7c.png?crop=1:1,smart&width=250&dpr=2" alt="Logo" style="max-width: 200px; margin: 20px auto; display: block;">
+
+    </header>
+  <body class="noto-sans-body">
+
+    <%= yield %>
+  </body>
+</html>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const logoutButton = document.getElementById('logoutButton');
+  const currentUser = '<%= current_user.present? %>';
+
+  if (currentUser) {
+    // Gérer la déconnexion
+    logoutButton.addEventListener('click', function() {
+      // Envoyer une requête AJAX pour déconnecter l'utilisateur
+      fetch('/users/sign_out', {
+        method: 'DELETE',
+        headers: {
+          'X-CSRF-Token': '<%= form_authenticity_token %>'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Afficher une alerte de déconnexion réussie
+          alert('Vous vous êtes déconnecté avec succès.');
+          // Rediriger l'utilisateur vers la page d'accueil
+          window.location.href = '/';
+        } else {
+          // Afficher un message d'erreur
+          alert('Une erreur est survenue lors de la déconnexion.');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+      });
+    });
+  }
+});
+</script>

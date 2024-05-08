@@ -1,0 +1,23 @@
+<!-- app/views/users/index.html.erb -->
+<h1>Liste des utilisateurs</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Prénom</th>
+      <th>Nom de famille</th>
+      <th>Âge</th>
+      <th>Adresse e-mail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.age %></td>
+        <td><%= user.fake_email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

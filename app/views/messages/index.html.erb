@@ -1,0 +1,8 @@
+<h1>Messages</h1>
+
+<% @messages.each do |message| %>
+  <div>
+    <%= link_to message.subject, message_path(message) %>
+    <p><%= message.body %></p>
+  </div>
+<% end %>

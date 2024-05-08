@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accueil</title>
+  <!-- Ajoute les liens vers Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Ajoute des styles personnalisés pour les cards */
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    body {
+      color: white;
+    }
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      color: #666;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <% if current_user %>
+      <h1>Bienvenue <%= current_user.first_name %>!</h1>
+      <p>Sur notre site d'évènements !</p>
+      <%= link_to "Créer un événement", new_event_path, class: "btn btn-primary mb-3" %>
+    <% else %>
+      <h1>Bienvenue sur notre site d'évènements !</h1>
+    <% end %>
+    <!-- Affichage des événements -->
+    <h2>Liste des événements :</h2>
+    <div class="row">
+      <% @events.each do |event| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= event.title %></h5>
+              <p class="card-text"><strong>Créé par :</strong> <%= link_to event.user.full_name, profile_user_path(event.user) %></p>
+              <p class="card-text"><%= event.description %></p>
+              <p><strong>Début :</strong> <%= event.start_date %></p>
+              <p><strong>Durée :</strong> <%= event.duration %> heures</p>
+              <p><strong>Prix :</strong> <%= event.price %> euros</p>
+              <p><strong>Lieu :</strong> <%= event.location %></p>
+              <%= link_to "Voir plus", event, class: "btn btn-info" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <!-- Ajoute le script Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
