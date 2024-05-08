@@ -73,27 +73,38 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Accueil <span class="sr-only"></span></a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/users">Liste des utilisateurs</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/contact">Contact</a>
-      </li>
+      <a class="nav-link" href="<%= new_event_path %>">Créer un événement</a>
+    </li>
+    
     </ul>
 
     <!-- Condition pour afficher les liens en fonction de l'état de l'utilisateur -->
     <% if current_user %>
       <!-- Dropdown for profile and logout -->
       <div class="dropdown dropdown-adjust">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="<%= user_path(current_user) %>" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mon Compte
         </a>
         <div class="dropdown-content" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="<%= user_path(current_user) %>">Voir mon profil</a>
           <a class="dropdown-item" href="<%= edit_user_registration_path %>">Modifier mon profil</a>
           <!-- Bouton de déconnexion dans votre dropdown -->
-          <a class="dropdown-item" id="logoutButton" href="<%= destroy_user_session_path %>">Se déconnecter</a>
-            </div>
+
+          <li class="nav-item">
+          <!-- Formulaire de déconnexion -->
+          <%= form_tag(destroy_user_session_path, method: :delete) do %>
+            <%= button_tag(type: 'submit', class: 'nav-link', style: 'background: none; border: none; cursor: pointer;') do %>
+              Se déconnecter
+            <% end %>
+          <% end %>
+        </li>
+
+        </div>
       </div>
     <% else %>
       <!-- Dropdown for sign up and sign in -->

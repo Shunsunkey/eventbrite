@@ -20,12 +20,12 @@
 
     .card-title {
       font-size: 1.2rem;
-      color: #333;
+      color: black;
       margin-bottom: 10px;
     }
 
     .card-text {
-      color: #666;
+      color: black;
     }
 
     .btn-primary {
@@ -58,10 +58,10 @@
               <h5 class="card-title"><%= event.title %></h5>
               <p class="card-text"><strong>Créé par :</strong> <%= link_to event.user.full_name, profile_user_path(event.user) %></p>
               <p class="card-text"><%= event.description %></p>
-              <p><strong>Début :</strong> <%= event.start_date %></p>
-              <p><strong>Durée :</strong> <%= event.duration %> heures</p>
-              <p><strong>Prix :</strong> <%= event.price %> euros</p>
-              <p><strong>Lieu :</strong> <%= event.location %></p>
+              <p class="card-text"><strong>Début :</strong> <%= event.start_date %></p>
+              <p class="card-text"><strong>Durée :</strong> <%= event.duration %> heures</p>
+              <p class="card-text"><strong>Prix :</strong> <%= event.price %> euros</p>
+              <p class="card-text"><strong>Lieu :</strong> <%= event.location %></p>
               <%= link_to "Voir plus", event, class: "btn btn-info" %>
             </div>
           </div>

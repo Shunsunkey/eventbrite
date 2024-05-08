@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'static_pages#index'
-
+  delete 'users/sign_out', to: 'devise/sessions#destroy'
   resources :events, only: [:show, :new, :create]
   resources :messages, only: [:new, :create]
   resources :contacts, only: [:new], path: '/contact', controller: 'static_pages'
   resources :users do
     member do
-      get 'profile' # Déplacez cette route à l'intérieur des ressources :users
+      get 'profile'
     end
   end
 end
